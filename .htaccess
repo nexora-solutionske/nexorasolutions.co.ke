@@ -1,0 +1,7 @@
+# .htaccess
+<Files send_discord.php>
+     #Order Deny,Allow
+    # Deny from all
+    # Allow access only from your server's IP if you have one, or remove this line
+    # Allow from 127.0.0.1
+</Files>

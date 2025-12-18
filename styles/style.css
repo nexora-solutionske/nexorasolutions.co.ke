@@ -1,0 +1,816 @@
+/* General Styles - YOUR ORIGINAL STYLES */
+:root {
+    --dark-bg: #1a1a2e;
+    --dark-secondary: #16213e;
+    --dark-tertiary: #0f3460;
+    --accent-color: #e94560;
+    --text-light: #e0e0e0;
+    --text-dark: #cccccc;
+    --border-color: #0f3460;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --pure-black: #000000; /* Added a variable for pure black */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-y: hidden; /* ADDED FOR PRELOADER: Prevents scrolling until preloader is gone */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff6b81;
+}
+
+/* Base button style (for .btn) */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease, border-color 0.3s ease; /* Added color and border-color to transition */
+    cursor: pointer;
+    text-align: center;
+    /* Default text color is handled by individual button classes */
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Primary Button Style (Get a Quote) */
+.btn-primary {
+    background-color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    color: var(--text-light); /* Default text color */
+}
+
+.btn-primary:hover {
+    background-color: #ff6b81; /* Lighter shade of accent on hover */
+    border-color: #ff6b81;
+    color: var(--pure-black); /* **FIXED:** Text becomes black on hover */
+}
+
+/* Secondary Button Style (Explore Projects) */
+.btn-secondary {
+    background-color: transparent; /* Transparent background */
+    border: 2px solid var(--text-light); /* Light border for contrast */
+    color: var(--text-light); /* Default text color */
+}
+
+.btn-secondary:hover {
+    background-color: var(--text-light); /* Background becomes light */
+    border-color: var(--text-light);
+    color: var(--pure-black); /* **FIXED:** Text becomes black on hover */
+}
+
+/* Tertiary Button Style (View All Services) */
+.btn-tertiary {
+    background-color: var(--dark-tertiary); /* Darker background */
+    border: 2px solid var(--dark-tertiary);
+    color: var(--text-light); /* Default text color */
+}
+
+.btn-tertiary:hover {
+    background-color: var(--text-light); /* Background becomes light */
+    border-color: var(--text-light);
+    color: var(--pure-black); /* **FIXED:** Text becomes black on hover */
+}
+
+
+section {
+    padding: 80px 0;
+    position: relative;
+}
+
+h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Header - YOUR ORIGINAL STYLES */
+.main-header {
+    background-color: var(--dark-secondary);
+    padding: 0px 0;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2.2em;
+    color: var(--accent-color);
+    letter-spacing: 1px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-nav ul li {
+    margin-left: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
+    width: 100%;
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: var(--accent-color); /* Use accent-color */
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 3px;
+    background: var(--text-light);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before, .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background: var(--text-light);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before {
+    transform: translateY(-10px);
+}
+
+.hamburger::after {
+    transform: translateY(10px);
+}
+
+.nav-open .hamburger {
+    transform: translateX(-50px);
+    background: transparent;
+}
+
+.nav-open .hamburger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+}
+
+.nav-open .hamburger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+}
+/* When nav is open on mobile */
+body.nav-open .main-nav {
+    transform: translateX(0%);
+}
+
+/* Hero Section - UPDATED FOR VIDEO BACKGROUND */
+.hero-section {
+    position: relative; /* Crucial for positioning the video */
+    padding: 100px 0; /* Keep existing padding for content spacing */
+    text-align: center;
+    overflow: hidden;
+    /* REMOVED: background: linear-gradient(135deg, var(--dark-secondary), var(--dark-bg)); */
+    min-height: 70vh; /* Ensure it has a good height */
+    }
+
+/* Style for the video background */
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video covers the entire area without distortion */
+    z-index: -1; /* Puts the video behind other content */
+}
+
+/* Optional: Add an overlay to make text more readable over busy videos */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 1.9); /* Semi-transparent black overlay */
+    z-index: -1; /* Puts the overlay between content and video */
+}
+
+
+.hero-section .container {
+    position: relative; /* Keep container above video/overlay */
+    z-index: 1; /* Ensure content is on top */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    text-align: left;
+    max-width: 600px;
+}
+
+.hero-content h2 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.hero-content p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    color: white;
+    text-align: left;
+}
+
+/* NEW: Container for hero buttons */
+.hero-buttons {
+    display: flex;
+    gap: 15px; /* Space between the two buttons */
+    margin-top: 30px; /* Space from the paragraph above */
+    justify-content: flex-start; /* Align buttons to the left within hero-content */
+}
+
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+    transform: scale(1.03);
+}
+
+/* Services Section - YOUR ORIGINAL STYLES */
+.services-section {
+    background-color: var(--dark-bg);
+    text-align: center;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.service-item {
+    background-color: var(--pure-black); /* Ensured it uses the new pure-black variable */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Adjusted hover for service-item to work better with spotlight */
+.service-item:hover {
+    transform: translateY(-10px);
+    background-color: var(--pure-black); /* Ensure it stays black even on hover */
+    box-shadow: 0 10px 25px var(--shadow-color); /* Enhance shadow on hover */
+}
+
+
+.service-item h4 {
+    font-size: 1.8em;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.service-item p {
+    color: var(--text-dark);
+}
+
+/* NEW: Container for View All Services button */
+.services-section .btn-container {
+    margin-top: 80px; /* **FIXED:** Increased margin to push it down more */
+    text-align: center; /* Centers the button horizontally */
+}
+
+
+/* Portfolio Section - YOUR ORIGINAL STYLES */
+.portfolio-section {
+    background-color: var(--dark-secondary);
+    text-align: center;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.portfolio-item {
+    background-color: var(--pure-black); /* Ensured it uses the new pure-black variable */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    background-color: var(--pure-black); /* Ensure it stays black even on hover */
+    box-shadow: 0 10px 25px var(--shadow-color); /* Enhance shadow on hover */
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.05);
+}
+
+.portfolio-item h4 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+}
+
+.portfolio-item p {
+    color: var(--text-dark);
+    padding-bottom: 20px;
+}
+
+/* About Section - YOUR ORIGINAL STYLES */
+.about-section {
+    background-color: var(--dark-bg);
+    text-align: center;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.about-photo {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--accent-color);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.about-content p {
+    flex: 1;
+    font-size: 1.1em;
+    color: var(--text-dark);
+}
+
+/* Contact Section - YOUR ORIGINAL STYLES */
+.contact-section {
+    background-color: var(--dark-secondary);
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 30px auto 0 auto;
+    gap: 20px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--dark-tertiary);
+    color: var(--text-light);
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input::placeholder, .contact-form textarea::placeholder {
+    color: var(--text-dark);
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: var(--accent-color);
+    outline: none;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+}
+
+.social-links {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.social-links a img:hover {
+    transform: scale(1.1);
+}
+
+/* Footer - YOUR ORIGINAL STYLES */
+.main-footer {
+    background-color: var(--dark-tertiary);
+    color: var(--text-dark);
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Responsive Design - YOUR ORIGINAL STYLES */
+@media (max-width: 768px) {
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 70%;
+        background-color: var(--dark-secondary);
+        flex-direction: column;
+        padding-top: 80px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .main-nav ul li {
+        margin: 20px 0;
+    }
+
+    .main-nav.nav-open {
+        transform: translateX(0%);
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .hero-section .container, .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content, .about-content p {
+        text-align: center;
+    }
+
+    .hero-content h2 {
+        font-size: 2.5em;
+        text-align: center;
+    }
+
+    .hero-content p {
+        font-size: 1.1em;
+        text-align: center;
+        color: white;
+    }
+
+    /* Adjust hero buttons for mobile */
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center; /* Center buttons horizontally */
+        gap: 10px; /* Less space between stacked buttons */
+    }
+
+
+    .hero-image {
+        margin-top: 40px;
+    }
+
+    .about-photo {
+        margin-bottom: 30px;
+    }
+
+    .service-grid, .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.8em;
+    }
+
+    .hero-content h2 {
+        font-size: 2em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+        color: white;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    .scroll-down-indicator {
+        bottom: 50px;
+        width: 50px;
+        height: 50px;
+    }
+    .scroll-down-indicator span {
+        width: 20px;
+    }
+    .scroll-down-indicator span:nth-child(1) { top: 12px; left: calc(50% - 12px); }
+    .scroll-down-indicator span:nth-child(2) { top: 12px; left: calc(50% - 1px); }
+    .scroll-down-indicator span:nth-child(3) { top: 20px; left: calc(50% - 12px); }
+    .scroll-down-indicator span:nth-child(4) { top: 20px; left: calc(50% - 1px); }
+}
+
+/* --- Preloader Styles (ADDED) --- */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.color-animation-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: colorChange 12s infinite alternate ease-in-out;
+    z-index: 1;
+}
+
+@keyframes colorChange {
+    0% { background-color: var(--accent-color); }
+    25% { background-color: var(--dark-tertiary); }
+    50% { background-color: var(--dark-secondary); }
+    75% { background-color: #3f72af; }
+    100% { background-color: #533483; }
+}
+
+
+/* Scroll Down Indicator (Arrow) - ADDED */
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 80px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    z-index: 2;
+    animation: bounce 1.8s infinite, fadeIn 1s ease-in forwards 3.5s;
+}
+
+.scroll-down-indicator span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text-light);
+    border-radius: 2px;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.scroll-down-indicator span:nth-child(1) {
+    transform: rotate(-45deg);
+    top: 15px;
+    left: calc(50% - 15px);
+}
+.scroll-down-indicator span:nth-child(2) {
+    transform: rotate(45deg);
+    top: 15px;
+    left: calc(50% - 1px);
+}
+.scroll-down-indicator span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 25px;
+    left: calc(50% - 15px);
+    opacity: 0.7;
+}
+.scroll-down-indicator span:nth-child(4) {
+    transform: rotate(45deg);
+    top: 25px;
+    left: calc(50% - 1px);
+    opacity: 0.7;
+}
+
+
+/* Animations for scroll down indicator - ADDED */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-15px);
+    }
+    60% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* State for when the preloader is hiding - ADDED */
+.preloader.hide-preloader {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+/* Mobile Responsiveness for Preloader elements - ADDED */
+@media (max-width: 480px) {
+    .scroll-down-indicator {
+        bottom: 50px;
+        width: 50px;
+        height: 50px;
+    }
+    .scroll-down-indicator span {
+        width: 20px;
+    }
+    .scroll-down-indicator span:nth-child(1) { top: 12px; left: calc(50% - 12px); }
+    .scroll-down-indicator span:nth-child(2) { top: 12px; left: calc(50% - 1px); }
+    .scroll-down-indicator span:nth-child(3) { top: 20px; left: calc(50% - 12px); }
+    .scroll-down-indicator span:nth-child(4) { top: 20px; left: calc(50% - 1px); }
+}
+
+/* --- Spotlight/Torchlight Effect Styles (NEWLY ADDED) --- */
+
+/* Ensure parent containers have relative positioning for the spotlight */
+.service-item,
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Style for the torch/spotlight element */
+.service-item .spotlight,
+.portfolio-item .spotlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+/* On hover, make the spotlight visible */
+.service-item:hover .spotlight,
+.portfolio-item:hover .spotlight {
+    opacity: 1;
+}
+
+/* Adjusted hover for service-item to work better with spotlight */
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px var(--shadow-color);
+    background-color: var(--pure-black);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px var(--shadow-color);
+    background-color: var(--pure-black);
+}

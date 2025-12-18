@@ -1,0 +1,668 @@
+/* General Styles - Copying from pstyle.css */
+:root {
+    --dark-bg: #1a1a2e;
+    --dark-secondary: #16213e;
+    --dark-tertiary: #0f3460;
+    --accent-color: #e94560;
+    --text-light: #e0e0e0;
+    --text-dark: #cccccc;
+    --border-color: #0f3460;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --pure-black: #000000;
+    /* Added variables for consistent height calculations */
+    --header-height: 60px; /* Assuming your header height is around 60px */
+    --services-hero-height: 120px; /* Approximate height for the services hero section */
+    --main-content-padding-vertical: 60px; /* Top/bottom padding of .main-services-content */
+    --footer-height: 90px; /* Approximate height of your footer */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ff6b81; /* Lighter version of accent-color as seen in pstyle.css */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+/* Preloader - Using variable colors */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-bg); /* Use dark-bg */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.7s ease-out, visibility 0.7s ease-out;
+}
+
+.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.color-animation-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Using accent-color with another complementary color */
+    background: linear-gradient(45deg, var(--dark-tertiary), var(--accent-color), var(--dark-tertiary), var(--accent-color));
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    z-index: 0;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+
+.scroll-down-indicator span {
+    display: block;
+    width: 2px;
+    height: 15px;
+    background: var(--text-light); /* Use text-light */
+    margin-bottom: 3px;
+    animation: scrollDown 2s infinite;
+    opacity: 0;
+}
+
+.scroll-down-indicator span:nth-child(1) { animation-delay: 0s; }
+.scroll-down-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.scroll-down-indicator span:nth-child(3) { animation-delay: 0.4s; }
+.scroll-down-indicator span:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes scrollDown {
+    0% { transform: translateY(-10px); opacity: 0; }
+    30% { transform: translateY(0); opacity: 1; }
+    60% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(10px); opacity: 0; }
+}
+
+/* Header - Copying from pstyle.css */
+.main-header {
+    background-color: var(--dark-secondary);
+    padding: 0px 0; /* Changed from 15px 0 to 0px 0 as in pstyle */
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2.2em; /* Adjusted to match pstyle */
+    color: var(--accent-color);
+    letter-spacing: 1px; /* Added from pstyle */
+    margin: 0;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.main-nav ul li {
+    margin-left: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.main-nav ul li a:hover::after,
+.main-nav ul li a.active::after {
+    width: 100%;
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: var(--accent-color); /* Use accent-color */
+}
+
+/* Mobile Navigation Toggle - Copying from pstyle.css */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 3px;
+    background: var(--text-light);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before, .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background: var(--text-light);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before {
+    transform: translateY(-10px);
+}
+
+.hamburger::after {
+    transform: translateY(10px);
+}
+
+/* Active state for hamburger (using body.nav-open) */
+.nav-open .hamburger {
+    transform: translateX(-50px);
+    background: transparent;
+}
+
+.nav-open .hamburger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+}
+
+.nav-open .hamburger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+}
+
+/* When nav is open on mobile */
+body.nav-open .main-nav {
+    transform: translateX(0%);
+}
+
+
+/* --- Services Hero Section --- */
+.services-hero-section {
+    background-color: var(--dark-bg); /* Matching portfolio-hero-section */
+    padding: 0px 0; /* Adjusted padding */
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 0px;
+    /* Removed box-shadow here as not present in pstyle's .portfolio-hero-section */
+    /* If you had an image, use it: background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.8)), url('hero-bg.jpg') no-repeat center center/cover; */
+}
+
+.services-hero-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8em; /* Matching pstyle h2 */
+    margin-bottom: 15px;
+    color: var(--accent-color); /* Use accent color */
+    /* text-shadow: removed as not in pstyle.css */
+}
+
+.services-hero-section p {
+    font-size: 1.1em; /* Matching pstyle p */
+    max-width: 700px; /* Matching pstyle p */
+    margin: 0 auto;
+    line-height: 1.6;
+    color: var(--text-dark); /* Use text-dark */
+}
+
+/* --- Main Services Content Layout --- */
+.main-services-content {
+    display: flex;
+    gap: 30px; /* Matching pstyle gap */
+    padding: 60px 0; /* Matching pstyle padding */
+    background-color: var(--dark-bg); /* Matching pstyle */
+}
+
+.main-services-content .container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    max-width: 100%;
+    padding: 0 0;
+}
+
+/* --- Services Categories Sidebar --- */
+.services-categories-sidebar {
+    flex: 0 0 250px;
+    padding-right: 30px;
+    border-right: 1px solid var(--border-color); /* Use border-color */
+    position: sticky;
+    top: 100px; /* Adjust based on header height */
+    align-self: flex-start;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px; /* Added padding to push content away from left screen edge */
+}
+
+.services-categories-sidebar h3 {
+    font-family: 'Montserrat', sans-serif; /* Added font-family */
+    font-size: 1.6em;
+    color: var(--text-light); /* Use text-light */
+    margin-top: 0; /* Ensure no extra top margin */
+    margin-bottom: 25px;
+    /* Removed border-bottom as not explicit in pstyle sidebar h3 */
+    padding-bottom: 0; /* Removed padding-bottom */
+    text-align: left;
+    padding-left: 10px; /* From pstyle */
+}
+
+.category-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* From pstyle */
+    gap: 10px; /* From pstyle */
+}
+
+.filter-btn {
+    width: 100%; /* From pstyle */
+    background-color: var(--dark-tertiary); /* Use dark-tertiary */
+    color: var(--text-light); /* Use text-light */
+    border: 2px solid var(--dark-tertiary); /* Use dark-tertiary */
+    padding: 12px 15px; /* From pstyle */
+    border-radius: 5px; /* From pstyle */
+    cursor: pointer;
+    font-size: 1em; /* From pstyle */
+    font-weight: 600; /* From pstyle */
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease, border-color 0.3s ease;
+    text-transform: uppercase; /* From pstyle */
+    text-align: left; /* From pstyle */
+    box-shadow: none; /* From pstyle */
+}
+
+.filter-btn:hover {
+    background-color: var(--accent-color); /* Use accent-color */
+    border-color: var(--accent-color); /* Use accent-color */
+    color: var(--pure-black); /* Use pure-black */
+    transform: translateX(5px); /* From pstyle */
+}
+
+.filter-btn.active {
+    background-color: var(--accent-color); /* Use accent-color */
+    color: var(--pure-black); /* Use pure-black */
+    border-color: var(--accent-color); /* Use accent-color */
+    box-shadow: none; /* From pstyle */
+    font-weight: 700; /* From pstyle */
+}
+
+/* --- Services Grid --- */
+.full-services-grid-wrapper {
+    flex: 1;
+    padding-right: 20px;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: relative;
+
+    /* --- RE-ADDED DESKTOP SCROLLABILITY HERE --- */
+    max-height: calc(100vh - var(--header-height) - var(--services-hero-height) - var(--main-content-padding-vertical) - 20px); /* Adjust based on your layout */
+    overflow-y: auto; /* Enable vertical scrolling */
+
+    /* Optional: Scrollbar styling, applies if overflow becomes auto */
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--dark-secondary);
+}
+
+.full-services-grid-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.full-services-grid-wrapper::-webkit-scrollbar-track {
+    background: var(--dark-secondary);
+    border-radius: 10px;
+}
+
+.full-services-grid-wrapper::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 10px;
+}
+
+.full-services-grid-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #ff6b81;
+}
+
+.full-services-grid {
+    display: grid;
+    /* --- DESKTOP GRID LAYOUT - LEFT INTACT AS REQUESTED --- */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Original desktop setting */
+    gap: 30px; /* Matching pstyle gap */
+    margin: 0;
+    padding: 0;
+}
+
+.service-item {
+    background-color: var(--pure-black); /* Matching pstyle's full-portfolio-item background */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--shadow-color); /* Matching pstyle's shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Ensure box-shadow transition */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centering content within the service item */
+    text-align: center; /* Centering text within the service item */
+    padding: 30px; /* Added padding for content */
+    border: 1px solid var(--dark-tertiary); /* A subtle border */
+}
+
+.service-item:hover {
+    transform: translateY(-10px); /* Matching pstyle hover */
+    box-shadow: 0 10px 25px var(--shadow-color); /* Matching pstyle hover shadow */
+}
+
+.service-item .spotlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit; /* Inherit border-radius from parent */
+    pointer-events: none;
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.3s ease; /* Fade in/out */
+    z-index: 1; /* Above background, below content */
+}
+
+.service-item:hover .spotlight {
+    opacity: 1; /* Show on hover */
+}
+
+.service-item .service-icon {
+    font-size: 4em;
+    color: var(--accent-color); /* Use accent-color for icons */
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover .service-icon {
+    transform: scale(1.1);
+}
+
+.service-item .service-info {
+    padding: 0;
+}
+
+.service-item h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8em;
+    color: var(--text-light); /* Use text-light */
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.service-item p {
+    font-size: 1em; /* Adjusted slightly */
+    color: var(--text-dark); /* Use text-dark */
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
+
+.learn-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* From pstyle */
+    color: var(--text-light); /* Text light color for button text */
+    background-color: var(--dark-tertiary); /* Using tertiary for button background */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600; /* From pstyle */
+    font-size: 1em; /* From pstyle */
+    transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease; /* Added color transition */
+    border: 1px solid var(--dark-tertiary); /* Add border for consistency */
+}
+
+.learn-more-btn:hover {
+    background-color: var(--accent-color); /* Hover to accent color */
+    color: var(--pure-black); /* Text turns black on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(233, 69, 96, 0.4); /* Shadow for accent color */
+    border-color: var(--accent-color);
+}
+
+.learn-more-btn i {
+    font-size: 1.1em; /* From pstyle */
+    vertical-align: middle; /* From pstyle */
+    transition: transform 0.2s ease;
+}
+
+.learn-more-btn:hover i {
+    transform: translateX(3px); /* Small slide effect on icon */
+}
+
+/* --- Footer - Copying from pstyle.css --- */
+.main-footer {
+    background-color: var(--dark-tertiary); /* Use dark-tertiary */
+    color: var(--text-dark); /* Use text-dark */
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid var(--border-color); /* Use border-color */
+    margin-top: 50px; /* Maintain margin */
+}
+
+.main-footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+/* --- Responsive Design - Copying from pstyle.css --- */
+@media (max-width: 992px) {
+    .main-services-content .container {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 20px;
+    }
+
+    .services-categories-sidebar {
+        position: relative;
+        top: auto;
+        flex: auto;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-right: 0;
+        padding-bottom: 30px;
+        max-height: none;
+        overflow-y: visible;
+        padding-left: 0;
+    }
+
+    .services-categories-sidebar h3 {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .category-filter {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .filter-btn {
+        width: auto;
+        text-align: center;
+        padding: 12px 25px;
+    }
+
+    .filter-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    /* --- MOBILE SCROLLABILITY & LAYOUT --- */
+    .full-services-grid-wrapper {
+        flex: auto;
+        padding-right: 0; /* Remove right padding when stacked */
+        /* Set max-height to show about 2 items, and enable scrolling */
+        max-height: 70vh; /* This should show about 2 items + some space, adjust if needed */
+        overflow-y: auto; /* Enable scrolling */
+    }
+
+    /* On tablets, allow two columns */
+    .full-services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted for two columns on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 70%;
+        background-color: var(--dark-secondary);
+        flex-direction: column;
+        padding-top: 80px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .main-nav ul li {
+        margin: 20px 0;
+    }
+
+    .main-nav.nav-open { /* This class is added by JS to the main-nav when open */
+        transform: translateX(0%);
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .full-services-grid-wrapper {
+        /* Adjust max-height for smaller tablet screens if needed, keeping 2 visible items */
+        max-height: 65vh; /* Slightly smaller for consistent scrolling on these devices */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.8em; /* Adjusted to match pstyle */
+    }
+
+    .services-hero-section h2 {
+        font-size: 1.5em;
+    }
+
+    .services-hero-section p {
+        font-size: 1em;
+    }
+
+    .service-item h4 {
+        font-size: 1.5em;
+    }
+
+    .service-item p {
+        font-size: 0.9em;
+    }
+
+    .filter-btn {
+        font-size: 0.9em;
+        padding: 10px 15px;
+    }
+
+    .full-services-grid {
+        grid-template-columns: 1fr; /* Force single column on very small screens */
+        gap: 20px;
+    }
+
+    .full-services-grid-wrapper {
+        /* When in a single column, 2 items will take more vertical space, adjust max-height accordingly. */
+        max-height: 75vh; /* This should ensure 2 items are visible, possibly with a hint of the third. */
+    }
+}
